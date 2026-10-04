@@ -71,7 +71,7 @@ header{
   left: 50%;
   transform: translateX(-50%);
   top: 0;
-  z-index: 1;
+  z-index: 10;
 }
 
 header nav{
@@ -106,6 +106,7 @@ header .btn{
   filter: drop-shadow(8px 35px 6px #00000025);
   will-change: transform;
   z-index: 9;
+  pointer-events: none;
 }
 
 /* section 1 */
@@ -306,4 +307,93 @@ footer .social{
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   Desktop (>= 991px) is the original design.
+   <= 990px  : tablet + phone layout (headphone path is in App.jsx)
+   <= 700px  : phone refinements
+   ============================================================ */
+@media (max-width: 990px) {
+  body { font-size: 16px; }
+
+  .w-full { width: calc(100vw - 2.5rem) !important; }
+
+  .heading {
+    font-size: clamp(2.4rem, 11vw, 5.5rem);
+    margin-bottom: 1rem;
+  }
+
+  header { padding: 0.7rem 0; }
+  .logo-text { font-size: 1.4rem; letter-spacing: 1.5px; }
+  header .btn { padding: 6px 16px; font-size: 0.95rem; }
+
+  /* headphone: positioned by GSAP from section positions */
+  #main { position: relative; }
+  #headphone {
+    left: 50%;
+    top: 0;
+    transform: none;
+    width: 60vw;
+    max-width: none;
+  }
+
+  /* 1 · hero */
+  #section1 {
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    min-height: 540px;
+  }
+  #section1 h1 { font-size: clamp(3rem, 16vw, 8rem); }
+
+  /* 2 · True Clarity (top padding = room for the headphone) */
+  #section2 {
+    min-height: auto;
+    padding-top: calc(min(50vw, 360px) + 3vw + 1.5rem);
+    padding-bottom: 4rem;
+  }
+  #section2 .content-wrapper { max-width: 560px; }
+  .feature-wrapper { margin-top: 2.5rem; gap: 1rem; }
+  .feature-box { padding: 1rem 1.2rem; }
+  .feature-name { font-size: 1.15rem; }
+
+  /* 3 · Masterbeat */
+  #section3 { min-height: auto; padding: 2rem 0 4rem; }
+  #section3 .heading {
+    font-size: clamp(2rem, 11vw, 6rem);
+    margin-bottom: 1.5rem;
+  }
+  #section3 video { max-width: none; }
+  #section3 .content { max-width: none; margin: 1.5rem 0 0; }
+
+  /* 4 · Gallery collage */
+  #section4 { min-height: 150vw; max-height: 1100px; }
+  #section4 img { border-width: 6px; }
+  #section4 .img1 { max-width: 44vw; top: 3%; left: 0; }
+  #section4 .img2 { max-width: 62vw; top: 24%; right: 0; }
+  #section4 .img3 { max-width: 50vw; bottom: 3%; left: 4%; }
+
+  /* 5 · Top Picks */
+  #section5 { min-height: auto; padding: 3rem 0 4rem; }
+  #section5 .product-section { margin-top: 2rem; gap: 2rem 0.5rem; }
+  .product .name { font-size: 18px; }
+  .product .price { font-size: 20px; }
+
+  /* 6 · Pure Escape */
+  #section6 {
+    flex-direction: column;
+    min-height: auto;
+    gap: 1.5rem;
+    padding: 2rem 0 3rem;
+  }
+  #section6 img { width: 100%; max-height: 70vh; object-fit: cover; }
+}
+
+@media (max-width: 700px) {
+  .feature-wrapper { grid-template-columns: 1fr; }
+  #section5 .product-section { grid-template-columns: repeat(2, 1fr); }
+  #section5 .btn { padding: 6px 16px; }
 }
